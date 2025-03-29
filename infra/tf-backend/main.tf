@@ -15,13 +15,13 @@ terraform {
 }
  
 provider "azurerm" {
-
+  alias   = "backend"
   features {}
 
 }
  
 resource "azurerm_resource_group" "backend_rg" {
-
+  provider = azurerm.backend
   name     = "tran0507-githubactions-rg"
 
   location = "East US"
@@ -29,7 +29,7 @@ resource "azurerm_resource_group" "backend_rg" {
 }
  
 resource "azurerm_storage_account" "backend_sa" {
-
+  provider = azurerm.backend
   name                     = "tran0507githubactions"  # MUST be globally unique and <=24 chars
 
   resource_group_name      = azurerm_resource_group.backend_rg.name
@@ -45,7 +45,7 @@ resource "azurerm_storage_account" "backend_sa" {
 }
  
 resource "azurerm_storage_container" "tfstate" {
-
+  provider = azurerm.backend
   name                  = "tfstate"
 
   storage_account_name  = azurerm_storage_account.backend_sa.name
