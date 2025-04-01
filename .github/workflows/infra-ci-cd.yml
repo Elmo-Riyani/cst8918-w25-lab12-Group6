@@ -52,7 +52,6 @@ jobs:
     - name: Run TFLint
       id: tflint
       run: tflint -f compact
-
  # This will only run if the terraform plan has changes, and when the PR is approved and merged to main.
  terraform-apply:
     name: 'Terraform Apply'
