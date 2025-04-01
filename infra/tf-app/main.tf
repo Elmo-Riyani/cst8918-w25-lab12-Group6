@@ -1,7 +1,7 @@
 provider "azurerm" {
   alias = "app"
   features {}
-
+  use_oidc = true
 }
 
 resource "azurerm_resource_group" "app_rg" {
